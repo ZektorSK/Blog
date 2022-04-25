@@ -11,6 +11,8 @@ app.use(express.json());
 
 const postsRoute = require('./routes/api/blogposts');
 app.use('/api/blog', postsRoute);
+const commentsRoute = require('./routes/api/comments');
+app.use('/api/comment', commentsRoute);
 
 app.get('/', (req, res)=>{
     res.send('Hello');

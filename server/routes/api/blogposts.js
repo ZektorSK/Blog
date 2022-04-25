@@ -1,9 +1,15 @@
 const express = require('express');
+const { deleteOne } = require('../../models/BlogPost');
 const router = express.Router();
 const Post = require('../../models/BlogPost');
 
-router.get('/', (req, res)=>{
-    res.send('hello user');
+router.get('/', async (req, res)=>{
+    try{
+        const posts = await Post.find();
+        res.status(200).json(posts);
+    }catch(err){
+        res.json({message: err});
+    }
 });
 
 router.post('/', async (req, res)=>{
@@ -11,9 +17,21 @@ router.post('/', async (req, res)=>{
        title: req.body.title,
        description: req.body.description 
     });
-    
-    const savedPost = await post.save();
-    res.json(savedPost);
+    try{
+        const savedPost = await post.save();
+        res.status(200).json(savedPost);
+    }catch(err){
+        res.json({message: err});
+    }
+});
+
+router.delete('/:id', async(req, res)=>{
+    try{
+        await Post.deleteOne({_id: req.params.id});
+        res.status(200).send(`Sucessfully deleted post with id: ${req.params.id}`);
+    }catch(err){
+        res.json({message:err});
+    }
 });
 
 module.exports = router;
