@@ -1,14 +1,27 @@
+require('dotenv').config();
+
 const express = require('express');
+const { json } = require('express/lib/response');
 const app = express();
-const port = 3000;
+const mongoose = require('mongoose');
+const port = process.env.PORT;
+const mongoUri = process.env.DB_CONNECTION;
+
+app.use(express.json());
+
+const postsRoute = require('./routes/api/blogposts');
+app.use('/api/blog', postsRoute);
+const commentsRoute = require('./routes/api/comments');
+app.use('/api/comment', commentsRoute);
 
 app.get('/', (req, res)=>{
-    console.log('Here!');
-    res.send('HOME');
+    res.send('Hello');
 })
 
-const userRouter = require('./routes/users');
+app.listen(port, ()=>console.log(`Running on port ${port}`));
 
-app.use('/users', userRouter);
-
-app.listen(3000);
+mongoose.connect(
+    mongoUri,
+    { useNewUrlParser: true, useUnifiedTopology: true},
+    ()=>{console.log('Connected to DB!')}
+);
