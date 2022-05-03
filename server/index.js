@@ -6,8 +6,10 @@ const app = express();
 const mongoose = require('mongoose');
 const port = process.env.PORT;
 const mongoUri = process.env.DB_CONNECTION;
+const cors = require('cors');
 
 app.use(express.json());
+app.use(cors());
 
 const postsRoute = require('./routes/api/blogposts');
 app.use('/api/blog', postsRoute);
