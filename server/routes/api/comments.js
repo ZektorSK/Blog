@@ -14,7 +14,6 @@ router.get('/', async(req, res)=>{
 router.post('/', async(req, res)=>{
     try{
         const post = new cPost({
-            postId: req.body.postId,
             author: req.body.author,
             text: req.body.text,
             date: req.body.date
