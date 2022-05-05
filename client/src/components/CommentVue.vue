@@ -1,22 +1,24 @@
 <template>
-    <footer class="flex justify-center justify-self-center pb-4 flex-col border-t-4 max-w-[600px]" style="border-color: rgb(65,184,131);">
-        <div class="flex justify-center justify-self-center flex-col">
+    <footer class="flex justify-center pb-4 flex-col border-t-4 max-w-[600px]" style="border-color: rgb(65,184,131);">
+        <div class="flex justify-center">
 
             <h3 class="text-xl font-serif text-center text-slate-100 pt-2">Comments</h3>
             <span class="flex justify-left">
                 <button type="submit" :class="TCSSbutton" v-show="!showinput" @click="showinput=true">Post a comment!</button>
-            </span>
+            </span> 
 
-            <form class="p-2 flex justify-center justify-self-center flex-col border-2 border-neutral-800" v-show="showinput">
-                <label for="name" :class="TCSSlabel">Name: </label>
-                <input type="text" name="name" :class="TCSStextinput" style="border-color: rgb(65,184,131);" required v-model="author">
-                <label for="text" :class="TCSSlabel">Message:</label>
-                <textarea placeholder="type something..." class="border-2 bg-neutral-800 text-slate-100" style="border-color: rgb(65,184,131);" name="text" required v-model="message"></textarea>
-                <span class="flex gap-4">  
-                    <button type="button" :class="TCSSbutton" @click="createPost()">Submit</button>
-                    <button :class="TCSSbutton" v-show="showinput" @click="showinput=false">Hide</button>
-                </span>
-            </form>
+            <transition> 
+                <form class="p-2 flex justify-center justify-self-center flex-col border-2 border-neutral-800" v-show="showinput">
+                    <label for="name" :class="TCSSlabel">Name: </label>
+                    <input type="text" name="name" :class="TCSStextinput" style="border-color: rgb(65,184,131);" required v-model="author">
+                    <label for="text" :class="TCSSlabel">Message:</label>
+                    <textarea placeholder="type something..." class="border-2 bg-neutral-800 text-slate-100" style="border-color: rgb(65,184,131);" name="text" required v-model="message"></textarea>
+                    <span class="flex gap-4">  
+                        <button type="button" :class="TCSSbutton" @click="createPost()">Submit</button>
+                        <button :class="TCSSbutton" v-show="showinput" @click="showinput=false">Hide</button>
+                    </span>
+                </form>
+            </transition>
 
             <ul>
                 <li :class="TCSScommentDiv" v-for="comment of Comments" :key="comment._id">            
@@ -40,7 +42,7 @@ export default{
             showinput: false,
             TCSStextinput: "border-2 h-[25px] w-[150px] bg-neutral-800 text-slate-100",
             TCSSlabel: "text-base text-slate-100",
-            TCSSbutton: "block border-4 border-green-400 hover:bg-green-400 block p-2 hover:shadow-lg text-slate-100 bg-neutral-800 rounded-lg mt-2",
+            TCSSbutton: "block border-4 border-[#368f5d] hover:bg-[#368f5d] block p-2 hover:shadow-lg text-slate-100 bg-neutral-800 rounded-lg mt-2 ease-in-out duration-200",
             TCSScommentTime: "font-mono text-slate-400 text-right text-sm p-2 underline decoration-slate-600",
             TCSScommentAuthor: "font-serif text-slate-100 text-xl ml-4",
             TCSScommentText: "font-mono text-slate-200 text-base text-center",
@@ -85,5 +87,15 @@ export default{
 <style scoped>
 textarea:focus, input:focus{
     outline: none;
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.6s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
 }
 </style>
