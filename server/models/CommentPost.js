@@ -1,11 +1,7 @@
 const mongoose = require('mongoose');
 
-const PostSchema = mongoose.Schema({
-    title: {
-        type: String,
-        required: true
-    },
-    description: {
+const commentSchema = mongoose.Schema({
+    author:{
         type: String,
         required: true
     },
@@ -16,7 +12,11 @@ const PostSchema = mongoose.Schema({
     date:{
         type: Date,
         default: Date.now()
+    },
+    edited:{
+        type: Boolean,
+        default: false
     }
 });
 
-module.exports = mongoose.model('Blog_Posts', PostSchema);
+module.exports = mongoose.model('Comment_Posts', commentSchema);
