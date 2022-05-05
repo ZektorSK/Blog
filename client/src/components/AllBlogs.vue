@@ -19,9 +19,9 @@ export default{
     data(){
         return{
             Posts: [],
-            TCSSpostdiv: "hover:shadow-lg hover:bg-green-400 hover:text-neutral-800 border-4 border-green-400 hover:cursor-pointer p-5 bg-neutral-800 rounded-lg",
+            TCSSpostdiv: "hover:shadow-lg hover:bg-[#368f5d] hover:text-neutral-800 border-4 border-[#368f5d] hover:cursor-pointer p-5 bg-neutral-800 rounded-lg ease-in-out duration-200 hover:p-8",
             TCSSpostanchor: "text-neutral-100 font-bold font-serif text-xl pb-4 pt-2",
-            TCSSpostparagraph: "font-mono font-light text-sm text-neutral-200"
+            TCSSpostparagraph: "font-sans font-light text-sm text-neutral-200"
         }
     },
     async created(){
