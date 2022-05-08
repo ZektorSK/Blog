@@ -1,6 +1,6 @@
 <template>
-    <footer class="flex justify-center pb-4 flex-col border-t-4 max-w-[600px]" style="border-color: rgb(65,184,131);">
-        <div class="flex justify-center">
+    <footer class="flex justify-center pb-4 flex-col border-t-4 max-w-[600px] absolute m-auto left-0 right-0" style="border-color: rgb(65,184,131);">
+        <div class="flex justify-center flex-col">
 
             <h3 class="text-xl font-serif text-center text-slate-100 pt-2">Comments</h3>
             <span class="flex justify-left">

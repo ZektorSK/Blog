@@ -1,7 +1,7 @@
 <template>
     <article class="flex flex-col justify-center self-center p-8">
         <ul class="flex flex-col justify-center self-center text-center max-w-[950px]">
-            <li class="p-4 hover:text-neutral-800" v-for="post of Posts" :key="post._id">
+            <li class="p-4 hover:text-neutral-800" v-for="post of Posts" :key="post._id" @click="$emit('sendPost', post)">
                 <div :class="TCSSpostdiv">
                     <p :class="TCSSpostparagraph" class="text-left underline decoration-green-400 italic">{{post.date}}</p>
                     <h3 :class="TCSSpostanchor">{{post.title}}</h3>
