@@ -8,6 +8,11 @@ const port = process.env.PORT;
 const mongoUri = process.env.DB_CONNECTION;
 const cors = require('cors');
 
+app.use(express.static(path.join(__dirname, "./dist")))
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, './dist', 'index.html'))
+})
+
 app.use(express.json());
 app.use(cors());
 
